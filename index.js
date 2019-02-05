@@ -62,12 +62,15 @@ const msgHex = '000000003D146C6F67696E436F756E744832373065666635622D303635652D34
 
 // creating buffer from the hex above
 const buf1 = Buffer.from(msgHex, 'hex');
-console.log('1a:', buf1.toString('utf8'))
-console.log('2a:', buf1.slice(5).toString('utf8'))
+console.log('1a:', buf1.toString('hex'));
+console.log('2a:', buf1.slice(5).toString('hex'));
 
 // now decoding from AVRO to JSON
 const fromHex = udsType.fromBuffer(buf1.slice(5));
 console.log('3a:', fromHex);
+
+const grzyb = {...fromHex};
+console.log('grzyb:', grzyb);
 
 // now let's try to encode the json object into AVRO
 const msgHex2Buf = udsType.toBuffer({
