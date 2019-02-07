@@ -1,0 +1,53 @@
+{
+  "type": "record",
+  "name": "behavior",
+  "namespace": "calculated",
+  "doc": "Represents a calculated behavior event to store for a user",
+  "fields": [
+    {
+      "name": "key",
+      "type": "string",
+      "doc": "A unique key set by client to identify the data element"
+    },
+    {
+      "name": "user",
+      "type": "string",
+      "doc": "The unique ID of the user"
+    },
+    {
+      "name": "operation",
+      "type": {
+        "type": "enum",
+        "name": "supportedOperations",
+        "symbols": [
+          "increment",
+          "merge",
+          "decrement",
+          "set",
+          "unset"
+        ]
+      },
+      "doc": "The requested operation type"
+    },
+    {
+      "name": "data",
+      "type": [
+        "null",
+        "string",
+        "double",
+        "boolean",
+        {
+          "type": "record",
+          "name": "serializedArrayOrJson",
+          "fields": [
+            {
+              "name": "json",
+              "type": "string"
+            }
+          ]
+        }
+      ],
+      "doc": "The data element to store in UDS"
+    }
+  ]
+}
