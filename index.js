@@ -29,10 +29,13 @@ const avroType = getAvroType(JSON.parse(schemaFile));
 
 if (mode === 'j2k') {
   const inputJson = fs.readFileSync(inputFile, 'utf8');
-  const inputObject = JSON.parse(inputJson);
-  const resKafka = json2kafka(avroType, inputObject);
+  let inputObjects = JSON.parse(inputJson);
+  inputObjects = Array.isArray(inputObjects) ? inputObjects : [inputObjects];
+  let resKafka = inputObjects.map(inputObject => json2kafka(avroType, inputObject));
+  resKafka = resKafka.length === 1 ? resKafka[0] : resKafka;
   console.log(resKafka);
 } else {
+  // currently supports only single line input files
   const inputKafka = fs.readFileSync(inputFile, 'utf8');
   const resJson = kafka2json(avroType, inputKafka);
   const parsedResJson = JSON.parse(JSON.stringify(resJson));
