@@ -2,6 +2,7 @@
 
 const fs = require('fs');
 const program = require('commander');
+const path = require('path');
 
 const pjson = require('./package.json');
 
@@ -20,7 +21,8 @@ program
   .parse(process.argv);
 
 const mode = program.j2k && 'j2k' || program.k2j && 'k2j' || 'j2k';
-const schemaPath = program.schema || 'schemas/calculated.behavior.json';
+const defaultPath = path.join(__dirname, 'schemas/calculated.behavior.json');
+const schemaPath = program.schema || defaultPath;
 const inputFile = program.input;
 const outputFile = program.output;
 
