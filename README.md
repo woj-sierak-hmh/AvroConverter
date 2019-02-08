@@ -19,13 +19,14 @@ $ npm i avro-converter -g
 ## Usage
 
 ```sh
-Usage: index [options] <file>
+Usage: avro-converter [options] <file>
 
 Options:
   -V, --version               output the version number
   -j, --j2k                   json2kafka mode (default)
   -k, --k2j                   kafka2json mode
   -i, --input <input-file>    Input file
+  -o, --output <output-file>  Output file, if not provided, will output to stdout
   -s, --schema <schema-file>  ARVO schema file to use, by default it uses calculated.behavior schema.
   -h, --help                  output usage information
 ```
