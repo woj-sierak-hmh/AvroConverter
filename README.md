@@ -42,6 +42,11 @@ Convert from AVRO binary as hex to JSON:
 $ avro-converter --k2j -i test/input.bin
 ```
 
+Use [avro-converter](https://github.com/wsihmh/AvroConverter) together with [simple-kafka-producer](https://github.com/wsihmh/SimpleKafkaProducer):
+```sh
+$ avro-converter -i /usr/local/lib/node_modules/avro-converter/sample/input-2.json | simple-kafka-producer
+```
+
 ## Samples
 Sample input.json (note that it could also be an array of objects):
 ```json
