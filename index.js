@@ -15,14 +15,14 @@ program
   .option('-j, --j2k', 'json2kafka mode (default)')
   .option('-k, --k2j', 'kafka2json mode')
   .option('-i, --input <input-file>', 'Input file')
-  .option('-o, --output <output-file>', 'Output file, if not provided, will output to stdout')
+  // .option('-o, --output <output-file>', 'Output file, if not provided, will output to stdout')
   .option('-s, --schema <schema-file>', 'ARVO schema file to use, by default it uses calculated.behavior schema.')
   .parse(process.argv);
 
 const mode = program.j2k && 'j2k' || program.k2j && 'k2j' || 'j2k';
 const schemaPath = program.schema || 'schemas/calculated.behavior.json';
 const inputFile = program.input;
-const output = program.output;
+// const output = program.output;
 
 const schemaFile = fs.readFileSync(schemaPath, 'utf8');
 const avroType = getAvroType(JSON.parse(schemaFile));
@@ -32,7 +32,7 @@ if (mode === 'j2k') {
   let inputObjects = JSON.parse(inputJson);
   inputObjects = Array.isArray(inputObjects) ? inputObjects : [inputObjects];
   let resKafka = inputObjects.map(inputObject => json2kafka(avroType, inputObject));
-  resKafka = resKafka.length === 1 ? resKafka[0] : resKafka;
+  resKafka = resKafka.length === 1 ? resKafka[0] : resKafka.join(',');
   console.log(resKafka);
 } else {
   // currently supports only single line input files
