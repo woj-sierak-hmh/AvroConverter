@@ -8,6 +8,11 @@ Simple command line tool to convert:
 
 Install globally:
 ```sh
+$ npm i https://github.com/wsihmh/AvroConverter.git -g
+```
+
+Due to temporary issues the script isn't published to HMH Artifactory NPM yet.
+```sh
 $ npm i avro-converter -g
 ```
 

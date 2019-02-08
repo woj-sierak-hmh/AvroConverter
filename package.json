@@ -1,5 +1,5 @@
 {
-  "name": "avro-converter",
+  "name": "@hmhco/avro-converter",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
